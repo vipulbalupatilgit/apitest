@@ -1,0 +1,157 @@
+{
+	"info": {
+		"_postman_id": "4cd26c07-accb-412a-b102-0240fdfdfc38",
+		"name": "Cartedo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "38265964"
+	},
+	"item": [
+		{
+			"name": "ListUsers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify the response code for list user API\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"To check that response body contains email\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"george.bluth@reqres.in\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users?p",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "p",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"userId\", 1);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\" verify the user email for get API\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"george.bluth@reqres.in\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify the user name\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"George\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\" verify the user email for get User\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"janet.weaver@reqres.in\");\r",
+							"});\r",
+							"pm.test(\"Verify the user name\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Test\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://reqres.in/api/users/{{userId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "CreateUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"userName\", \"user1\");\r",
+							"pm.collectionVariables.set(\"userJob\", \"testing\");\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Verify the user name\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"user1\");\r",
+							"});\r",
+							"pm.test(\"Verify the user job\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"testing\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify the user name which is not there \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"user2\");\r",
+							"});\r",
+							"pm.test(\"Verify the user job which is not present\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"qa\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"{{userName}}\",\r\n    \"job\": \"{{userJob}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://reqres.in/api/users"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "userID",
+			"value": "userId"
+		},
+		{
+			"key": "userName",
+			"value": "userName"
+		},
+		{
+			"key": "userJob",
+			"value": "userJob"
+		}
+	]
+}
