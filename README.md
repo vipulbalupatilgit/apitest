@@ -1,7 +1,7 @@
-README for Executing Cartedo Postman Collection
-This guide will help you set up and execute the Cartedo.postman_collection.json Postman collection. Follow these steps to import the collection into Postman and run the requests.
+**README for Executing Cartedo Postman Collection
+This guide will help you set up and execute the Cartedo.postman_collection.json Postman collection. Follow these steps to import the collection into Postman and run the requests.**
 
-Prerequisites
+**Prerequisites**
 Postman Installed: Ensure you have Postman installed on your computer. You can download it from Postman’s official website.
 Steps to Execute the Collection
 1. Import the Collection
@@ -23,3 +23,30 @@ Click the Start Run button to execute all requests in the collection.
 After execution, the results will be displayed in the Collection Runner window.
 Review the status of each request (e.g., success, failure) and any responses received.
 You can also export the results if needed by clicking the Export Results button.
+
+
+**Test cases**
+
+1- To check the list user API  https://reqres.in/api/users?page=2
+
+ 1-Verify the response 
+ 2-Verify the status code
+
+
+
+2-To check the single user API https://reqres.in/api/users/2
+ 1-verify that single user can be fecthed via ID
+ 2-verify the user details
+ 3-Verify the status code should be 200
+ 4-Verify the status code when ID is wrong
+ 5-Verify the response when the ID is wrong
+
+
+3-To check that user can create an user using POST https://reqres.in/api/users
+ 1-verify that user is successfuly created when the request body is correct
+ 2-Verify the status code should be 201 when the user is created
+ 3-Verify that user is not created when the request body is inncorrect
+ 4-Verify the status code when the request body is wrong
+ 5-verify the response when the request body is empty
+
+
